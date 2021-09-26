@@ -1,24 +1,19 @@
 import express from 'express';
-import { nanoid } from 'nanoid';
-import { links } from './../storage';
+import Link from '../models/link';
 import validUrl from './../valid-url';
 
 const router = express.Router();
 
-links.push({ short: nanoid(6), full: 'https://alex.ottr.one/', clicks: 0 })
+router.get('/', async (req, res) => {
 
-router.get('/', (req, res) => {
-
-    res.json(links);
+    res.json(await Link.find());
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 
     if (!validUrl(req.body.full, { strict: true, protocols: ['http', 'https'] })) return res.sendStatus(400);
-    links.push({ short: nanoid(6), full: req.body.full, clicks: 0 })
+    await Link.create({ full: req.body.full });
     res.sendStatus(201)
 });
-
-
 
 export default router;

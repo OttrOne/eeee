@@ -1,6 +1,6 @@
 {
   "name": "eeee",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "URL shortner",
   "main": "dist/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mongoose": "^6.0.7",
     "nanoid": "^3.1.25"
   }
 }
